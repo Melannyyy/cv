@@ -1,0 +1,138 @@
+# Crear un archivo ZIP con un CV colorido de ejemplo (index.html y style.css)
+
+from zipfile import ZipFile
+import os
+
+# Crear las carpetas y archivos necesarios
+os.makedirs("/mnt/data/cv-github", exist_ok=True)
+
+# Contenido del index.html
+index_html = """
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi CV - Alex Mendoza</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Alex Mendoza</h1>
+      <p>Desarrollador Web | Creativo | Apasionado por la Tecnología</p>
+    </header>
+
+    <section>
+      <h2>📞 Contacto</h2>
+      <p>Email: alexmendoza@email.com</p>
+      <p>GitHub: <a href="https://github.com/alexmendoza" target="_blank">github.com/alexmendoza</a></p>
+    </section>
+
+    <section>
+      <h2>🎓 Educación</h2>
+      <p>Universidad de Guayaquil</p>
+      <p>Ingeniería en Sistemas</p>
+      <p>2022 - Actualidad</p>
+    </section>
+
+    <section>
+      <h2>💻 Habilidades</h2>
+      <ul>
+        <li>HTML, CSS, JavaScript</li>
+        <li>Python</li>
+        <li>Git y GitHub</li>
+        <li>Diseño Web Responsivo</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>📝 Proyectos</h2>
+      <ul>
+        <li>Portfolio Web - <a href="#">Ver proyecto</a></li>
+        <li>Sistema de Notas - <a href="#">Ver proyecto</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>© 2025 Alex Mendoza</p>
+    </footer>
+  </div>
+</body>
+</html>
+"""
+
+# Contenido del style.css
+style_css = """
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #ffffff20;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 3em;
+  margin: 0;
+  color: #ffe600;
+}
+
+h2 {
+  border-bottom: 2px solid #ffe600;
+  padding-bottom: 5px;
+}
+
+p, li {
+  font-size: 1.1em;
+}
+
+a {
+  color: #ffe600;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style-type: '💡 ';
+  padding-left: 20px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #fff;
+}
+"""
+
+# Guardar los archivos
+with open("/mnt/data/cv-github/index.html", "w", encoding="utf-8") as f:
+    f.write(index_html)
+
+with open("/mnt/data/cv-github/style.css", "w", encoding="utf-8") as f:
+    f.write(style_css)
+
+# Crear el archivo ZIP
+zip_path = "/mnt/data/cv-github.zip"
+with ZipFile(zip_path, 'w') as zipf:
+    zipf.write("/mnt/data/cv-github/index.html", "index.html")
+    zipf.write("/mnt/data/cv-github/style.css", "style.css")
+
+zip_path
